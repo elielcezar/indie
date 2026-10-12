@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="Explore, play, and support unique indie games crafted by passionate developers.">
+  <meta name="theme-color" content="#061014">
+  <title>Indie Showcase — Unique Independent Games</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%23061014%27/%3E%3Crect x=%275.5%27 y=%275.5%27 width=%2721%27 height=%2721%27 fill=%27none%27 stroke=%27%238ceaf5%27 stroke-opacity=%27.5%27/%3E%3Cpath d=%27M10 16h2l2-5 4 10 2-5h2%27 fill=%27none%27 stroke=%27%238ceaf5%27 stroke-width=%271.6%27/%3E%3C/svg%3E">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f66df6d7-cac8-4456-8543-0ae8ee5b2e9d_3840w.webp" fetchpriority="high">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Configure Tailwind to include our custom 3D transform utilities
+    tailwind.config = {
+    theme: {
+    extend: {
+    // Add any custom theme extensions here if needed
+    }
+    },
+    plugins: [
+    function({ addUtilities }) {
+    const rotateXUtilities = {};
+    const rotateYUtilities = {};
+    const rotateZUtilities = {};
+    const rotateValues = [0, 5, 10, 15, 20, 30, 45, 75];
+    // Generate rotate-x utilities
+    rotateValues.forEach((value) => {
+    rotateXUtilities[`.rotate-x-${value}`] = {
+    '--tw-rotate-x': `${value}deg`,
+    transform: `
+    translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0))
+    rotateX(var(--tw-rotate-x, 0))
+    rotateY(var(--tw-rotate-y, 0))
+    rotateZ(var(--tw-rotate-z, 0))
+    skewX(var(--tw-skew-x, 0))
+    skewY(var(--tw-skew-y, 0))
+    scaleX(var(--tw-scale-x, 1))
+    scaleY(var(--tw-scale-y, 1))
+    `.replace(/\\s+/g, ' ').trim(),
+    };
+    if (value !== 0) {
+    rotateXUtilities[`.-rotate-x-${value}`] = {
+    '--tw-rotate-x': `-${value}deg`,
+    transform: `
+    translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0))
+    rotateX(var(--tw-rotate-x, 0))
+    rotateY(var(--tw-rotate-y, 0))
+    rotateZ(var(--tw-rotate-z, 0))
+    skewX(var(--tw-skew-x, 0))
+    skewY(var(--tw-skew-y, 0))
+    scaleX(var(--tw-scale-x, 1))
+    scaleY(var(--tw-scale-y, 1))
+    `.replace(/\\s+/g, ' ').trim(),
+    };
+    }
+    });
+    // Generate rotate-y utilities
+    rotateValues.forEach((value) => {
+    rotateYUtilities[`.rotate-y-${value}`] = {
+    '--tw-rotate-y': `${value}deg`,
+    transform: `
+    translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0))
+    rotateX(var(--tw-rotate-x, 0))
+    rotateY(var(--tw-rotate-y, 0))
+    rotateZ(var(--tw-rotate-z, 0))
+    skewX(var(--tw-skew-x, 0))
+    skewY(var(--tw-skew-y, 0))
+    scaleX(var(--tw-scale-x, 1))
+    scaleY(var(--tw-scale-y, 1))
+    `.replace(/\\s+/g, ' ').trim(),
+    };
+    if (value !== 0) {
+    rotateYUtilities[`.-rotate-y-${value}`] = {
+    '--tw-rotate-y': `-${value}deg`,
+    transform: `
+    translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0))
+    rotateX(var(--tw-rotate-x, 0))
+    rotateY(var(--tw-rotate-y, 0))
+    rotateZ(var(--tw-rotate-z, 0))
+    skewX(var(--tw-skew-x, 0))
+    skewY(var(--tw-skew-y, 0))
+    scaleX(var(--tw-scale-x, 1))
+    scaleY(var(--tw-scale-y, 1))
+    `.replace(/\\s+/g, ' ').trim(),
+    };
+    }
+    });
+    // Generate rotate-z utilities
+    rotateValues.forEach((value) => {
+    rotateZUtilities[`.rotate-z-${value}`] = {
+    '--tw-rotate-z': `${value}deg`,
+    transform: `
+    translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0))
+    rotateX(var(--tw-rotate-x, 0))
+    rotateY(var(--tw-rotate-y, 0))
+    rotateZ(var(--tw-rotate-z, 0))
+    skewX(var(--tw-skew-x, 0))
+    skewY(var(--tw-skew-y, 0))
+    scaleX(var(--tw-scale-x, 1))
+    scaleY(var(--tw-scale-y, 1))
+    `.replace(/\\s+/g, ' ').trim(),
+    };
+    if (value !== 0) {
+    rotateZUtilities[`.-rotate-z-${value}`] = {
+    '--tw-rotate-z': `-${value}deg`,
+    transform: `
+    translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0))
+    rotateX(var(--tw-rotate-x, 0))
+    rotateY(var(--tw-rotate-y, 0))
+    rotateZ(var(--tw-rotate-z, 0))
+    skewX(var(--tw-skew-x, 0))
+    skewY(var(--tw-skew-y, 0))
+    scaleX(var(--tw-scale-x, 1))
+    scaleY(var(--tw-scale-y, 1))
+    `.replace(/\\s+/g, ' ').trim(),
+    };
+    }
+    });
+    // Perspective utilities
+    const perspectiveUtilities = {
+    ".perspective-none": { perspective: "none" },
+    ".perspective-dramatic": { perspective: "100px" },
+    ".perspective-near": { perspective: "300px" },
+    ".perspective-normal": { perspective: "500px" },
+    ".perspective-midrange": { perspective: "800px" },
+    ".perspective-distant": { perspective: "1200px" },
+    };
+    // Transform style utilities
+    const transformStyleUtilities = {
+    ".transform-style-preserve-3d": { "transform-style": "preserve-3d" },
+    ".transform-style-flat": { "transform-style": "flat" },
+    };
+    addUtilities({
+    ...rotateXUtilities,
+    ...rotateYUtilities,
+    ...rotateZUtilities,
+    ...perspectiveUtilities,
+    ...transformStyleUtilities,
+    });
+    }
+    ]
+    };
+  </script>
+</head>
+
+<body class="overflow-x-hidden bg-[#061014] font-['Manrope'] text-[#f3f6f5] antialiased selection:bg-[#8ceaf5] selection:text-[#061014]">
+    <a href="#main-content" class="fixed left-4 top-4 z-[100] -translate-y-24 rounded-full bg-[#8ceaf5] px-5 py-3 text-sm font-medium text-[#061014] transition focus:translate-y-0 focus:outline-none focus:ring-2 focus:ring-white">
+      Skip to content
+    </a>
+
+    <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#061014]/70 backdrop-blur-xl">
+      <div class="mx-auto flex h-16 max-w-[96rem] items-center justify-between px-5 sm:px-8 lg:px-12">
+        <a href="#top" class="flex min-h-11 items-center gap-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-[#8ceaf5]">
+          <span class="grid size-7 place-items-center border border-[#8ceaf5]/30 text-[#8ceaf5]">
+            <iconify-icon icon="solar:soundwave-linear" stroke-width="1.5" class="text-lg"></iconify-icon>
+          </span>
+          <span class="text-xs font-medium tracking-[0.24em]">
+            INDIE SHOWCASE
+          </span>
+        </a>
+
+        <nav class="hidden items-center gap-8 text-xs text-slate-400 md:flex" aria-label="Primary navigation">
+          <a href="#models" class="rounded-sm py-3 transition hover:text-white focus:outline-none focus:ring-2 focus:ring-[#8ceaf5]">
+            Games
+          </a>
+          <a href="#services" class="rounded-sm py-3 transition hover:text-white focus:outline-none focus:ring-2 focus:ring-[#8ceaf5]">
+            Genres
+          </a>
+          <a href="#systems" class="rounded-sm py-3 transition hover:text-white focus:outline-none focus:ring-2 focus:ring-[#8ceaf5]">
+            Studios
+          </a>
+          <a href="#support" class="rounded-sm py-3 transition hover:text-white focus:outline-none focus:ring-2 focus:ring-[#8ceaf5]">
+            Support
+          </a>
+        </nav>
+
+        <a href="#reserve" data-magnetic="" class="hidden min-h-11 items-center gap-2 rounded-full border border-[#8ceaf5]/30 bg-white/[0.04] px-5 text-xs font-medium transition hover:border-[#8ceaf5] hover:bg-[#8ceaf5] hover:text-[#061014] focus:outline-none focus:ring-2 focus:ring-[#8ceaf5] active:scale-[0.98] sm:inline-flex">
+          Wishlist
+          <iconify-icon icon="solar:arrow-right-up-linear" stroke-width="1.5" class="text-base"></iconify-icon>
+        </a>
+
+        <button id="menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu" class="grid size-11 place-items-center border border-white/15 text-white transition hover:border-[#8ceaf5]/60 focus:outline-none focus:ring-2 focus:ring-[#8ceaf5] md:hidden">
+          <iconify-icon icon="solar:hamburger-menu-linear" stroke-width="1.5" class="text-xl"></iconify-icon>
+        </button>
+      </div>
+
+      <nav id="mobile-menu" class="hidden border-t border-white/10 bg-[#061014] px-5 py-5 md:hidden" aria-label="Mobile navigation">
+        <div class="grid gap-1 text-sm text-slate-300">
+          <a href="#models" class="flex min-h-11 items-center border-b border-white/10">
+            Games
+          </a>
+          <a href="#services" class="flex min-h-11 items-center border-b border-white/10">
+            Genres
+          </a>
+          <a href="#systems" class="flex min-h-11 items-center border-b border-white/10">
+            Studios
+          </a>
+          <a href="#support" class="flex min-h-11 items-center border-b border-white/10">
+            Support
+          </a>
+          <a href="#reserve" class="mt-3 flex min-h-11 items-center justify-center rounded-full bg-[#8ceaf5] font-medium text-[#061014]">
+            Wishlist
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <!-- Existing chamber hero -->
+      <section id="top" class="aether-stage relative z-10 isolate" aria-label="Aetherfall cinematic landscape">
+        <div class="aether-loader" aria-hidden="true">
+          <span class="aether-loader-mark"></span>
+        </div>
+        <div class="aether-hero">
+          <div class="aether-scene" aria-hidden="true">
+            <img class="aether-layer aether-background" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f66df6d7-cac8-4456-8543-0ae8ee5b2e9d_3840w.webp" alt="" decoding="async" fetchpriority="high">
+            <img class="aether-layer aether-midground" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2c493c39-21b4-4384-88ee-ed6ca4f5c2f9_3840w.webp" alt="" decoding="async" fetchpriority="high">
+            <img class="aether-layer aether-isles" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e5da78b0-2689-4e45-bb46-34f476a3fbf1_1600w.webp" alt="Floating mossy isles with waterfalls" decoding="async">
+            <img class="aether-layer aether-rocks" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b4062d84-a168-4648-a35a-7e3943b078d7_3840w.webp" alt="" decoding="async">
+            <img class="aether-layer aether-foreground" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a03e8119-1b64-41ca-a1fc-5f5cc2eb3ad1_3840w.webp" alt="" decoding="async" fetchpriority="high">
+            <img class="aether-layer aether-world-two" src="https://cdn.midjourney.com/0aefa95b-c38a-4870-a425-ef60a197c010/0_0.png?w=800&q=80" alt="" decoding="async">
+          </div>
+          <div class="aether-bloom" aria-hidden="true"></div>
+          <div class="aether-atmosphere" aria-hidden="true"></div>
+          <div class="aether-vignette" aria-hidden="true"></div>
+          <div class="aether-grain" aria-hidden="true"></div>
+          <div class="aether-chrome" aria-hidden="true">
+            <div class="aether-eyebrow">Aetherfall / First Light</div>
+            <div class="aether-scroll-cue">
+              <span>Enter the valley</span>
+              <span class="aether-scroll-line"></span>
+            </div>
+          </div>
+          <div class="aether-second-title">
+            <span class="aether-second-kicker">Aetherfall / Second Light</span>
+            <h1>
+              Beyond
+              <br>
+              the veil.
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Existing character selector -->
+      <section class="relative min-h-[100svh] overflow-hidden border-y border-white/10 bg-[#03090c] px-6 py-24 sm:px-10 lg:px-14 lg:py-32" id="models">
+        <div class="pointer-events-none absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(140,234,245,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(140,234,245,.12)_1px,transparent_1px)] [background-size:5rem_5rem]"></div>
+
+        <div class="relative mx-auto max-w-[92rem]">
+          <h1 class="relative z-10 text-6xl font-semibold uppercase leading-[0.82] tracking-tight text-white sm:text-8xl lg:text-9xl" data-warp-title="">
+            Choose
+            <span class="block text-right">your journey</span>
+          </h1>
+
+          <div class="relative mt-10 grid min-h-[34rem] items-center lg:grid-cols-[0.8fr_1.2fr]">
+            <div class="relative z-20 max-w-md">
+              <p class="font-['Space_Mono'] text-xs uppercase tracking-[0.22em] text-[#8ceaf5]/60">
+                01 / Games
+              </p>
+              <h2 class="mt-5 text-4xl font-light leading-none tracking-tight sm:text-5xl" data-warp-title="">
+                Choose.
+                <br>
+                Play. Discover.
+              </h2>
+              <p class="mt-6 text-base leading-7 text-slate-400">
+                Explore a curated collection of independent games. Select a
+                genre, visual style, gameplay mechanics, and immerse yourself.
+              </p>
+
+              <ul class="mt-7 space-y-2 font-['Space_Mono'] text-xs uppercase tracking-[0.14em] text-slate-500">
+                <li class="flex items-center gap-3">
+                  <span class="h-px w-5 bg-[#8ceaf5]/60"></span>
+                  8 distinct genres
+                </li>
+                <li class="flex items-center gap-3">
+                  <span class="h-px w-5 bg-[#8ceaf5]/60"></span>
+                  Hand-crafted art styles
+                </li>
+                <li class="flex items-center gap-3">
+                  <span class="h-px w-5 bg-[#8ceaf5]/60"></span>
+                  DRM-free &amp; Cloud saves
+                </li>
+              </ul>
+
+              <a href="#services" data-magnetic="" class="mt-8 inline-flex min-h-11 items-center gap-5 rounded-full border border-white/20 px-6 text-xs font-medium uppercase tracking-[0.14em] transition hover:border-[#8ceaf5] hover:bg-[#8ceaf5] hover:text-[#061014] focus:outline-none focus:ring-2 focus:ring-[#8ceaf5] active:scale-[0.98]">
+                Explore games
+                <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="text-base"></iconify-icon>
+              </a>
+            </div>
+
+            <div class="relative -mt-12 h-[32rem] lg:-ml-24 lg:h-[42rem]">
+              <div class="absolute left-1/2 top-1/2 size-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#8ceaf5]/10 sm:size-[38rem]"></div>
+              <div class="absolute left-1/2 top-1/2 size-[20rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#8ceaf5]/10 sm:size-[29rem]"></div>
+              <img src="https://cdn.midjourney.com/82c54d8c-ef92-44f9-870c-d445896e6d85/0_2.png?w=800&q=80" alt="Indie game character concept art" class="relative z-10 h-full w-full object-contain drop-shadow-[0_30px_45px_rgba(0,0,0,.8)]" loading="lazy">
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between border-t border-white/10 pt-5 font-['Space_Mono'] text-xs uppercase tracking-[0.18em] text-slate-600">
+            <span>Indie showcase</span>
+            <span>02</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Built to serve -->
+      <section id="services" data-camera="" class="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-[#09171b] px-6 py-16 sm:px-10 lg:px-14 lg:py-20">
+        <img data-camera-media="" src="https://cdn.midjourney.com/54185736-8092-4220-ad87-5087d23bc6d8/0_2.png?w=800&q=80" alt="Persona humanoid service platform in an active laboratory" class="absolute inset-0 h-full w-full scale-[1.04] object-cover opacity-55 will-change-transform" loading="lazy">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_68%_45%,transparent_0%,rgba(6,16,20,.18)_38%,rgba(6,16,20,.9)_100%)]"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#061014] via-transparent to-[#061014]/50"></div>
+
+        <div class="relative z-10 mx-auto w-full max-w-[92rem] pb-24">
+          <p class="font-['Space_Mono'] text-xs uppercase tracking-[0.22em] text-[#8ceaf5]/70">
+            02 / Game genres and styles
+          </p>
+          <h2 class="mt-5 max-w-5xl text-6xl font-semibold uppercase leading-[0.84] tracking-tight sm:text-8xl lg:text-9xl" data-warp-title="">
+            Built to
+            <br>
+            play.
+          </h2>
+
+          <div class="mt-8 max-w-xl">
+            <p class="text-base leading-7 text-slate-300">
+              One adaptable platform for diverse experiences—from relaxing
+              puzzle games to intense action rogue-likes, crafted for every
+              player.
+            </p>
+            <a href="#gallery" data-magnetic="" class="mt-7 inline-flex min-h-11 items-center gap-5 rounded-full bg-[#8ceaf5] px-6 text-xs font-medium uppercase tracking-[0.14em] text-[#061014] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-white active:scale-[0.98]">
+              Explore genres
+              <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="text-base"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <div class="absolute inset-x-0 bottom-0 z-20 overflow-x-auto border-t border-white/15 bg-[#061014]/70 backdrop-blur-md">
+          <div class="mx-auto flex min-w-max max-w-[92rem]">
+            <span class="flex h-16 min-w-40 items-center border-r border-white/10 px-5 font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-[#8ceaf5]">
+              01 Action
+            </span>
+            <span class="flex h-16 min-w-40 items-center border-r border-white/10 px-5 font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-slate-400">
+              02 Adventure
+            </span>
+            <span class="flex h-16 min-w-40 items-center border-r border-white/10 px-5 font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-slate-400">
+              03 RPG
+            </span>
+            <span class="flex h-16 min-w-40 items-center border-r border-white/10 px-5 font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-slate-400">
+              04 Strategy
+            </span>
+            <span class="flex h-16 min-w-40 items-center border-r border-white/10 px-5 font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-slate-400">
+              05 Puzzle
+            </span>
+            <span class="flex h-16 min-w-40 items-center border-r border-white/10 px-5 font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-slate-400">
+              06 Platformer
+            </span>
+            <span class="flex h-16 min-w-40 items-center border-r border-white/10 px-5 font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-slate-400">
+              07 Rogue-like
+            </span>
+            <span class="flex h-16 min-w-40 items-center px-5 font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-slate-400">
+              08 Simulation
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Face and sensor mechanics -->
+      <section class="min-h-[100svh] overflow-hidden bg-[#f3f6f5] px-6 py-24 text-[#061014] sm:px-10 lg:px-14 lg:py-28">
+        <div class="mx-auto max-w-[92rem]">
+          <div class="grid items-end gap-8 border-t border-[#061014]/15 pt-7 lg:grid-cols-12">
+            <div class="lg:col-span-8">
+              <p class="font-['Space_Mono'] text-xs uppercase tracking-[0.2em] text-[#061014]/55">
+                03 / Gameplay mechanics
+              </p>
+              <h2 class="mt-5 text-5xl font-semibold uppercase leading-[0.88] tracking-tight sm:text-7xl lg:text-8xl" data-warp-title="">
+                Immersive worlds /
+                <br>
+                tight controls.
+              </h2>
+            </div>
+            <p class="max-w-md text-base leading-7 text-slate-600 lg:col-span-4">
+              Layered storytelling meets responsive gameplay systems that keep
+              you engaged from the first click to the final boss.
+            </p>
+          </div>
+
+          <div class="mt-14 grid min-h-[36rem] overflow-hidden border border-[#061014]/10 lg:grid-cols-2">
+            <div class="relative min-h-[28rem] overflow-hidden bg-[#d9dddc]">
+              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6a18d4d0-5547-45fe-9547-45b3287c56ce_1600w.jpg" alt="Close humanoid profile showing facial sensor systems" class="h-full w-full object-cover object-center" loading="lazy">
+              <div class="absolute left-[7%] top-[18%] flex items-center gap-3 bg-[#f3f6f5]/90 px-4 py-3 backdrop-blur">
+                <span class="size-2 rounded-full bg-[#8ceaf5]"></span>
+                <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.14em]">
+                  Visual style
+                </span>
+              </div>
+              <div class="absolute bottom-[16%] right-[6%] flex items-center gap-3 bg-[#061014]/85 px-4 py-3 text-white backdrop-blur">
+                <span class="size-2 rounded-full bg-[#8ceaf5]"></span>
+                <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.14em]">
+                  Sound design
+                </span>
+              </div>
+            </div>
+
+            <div class="relative min-h-[28rem] overflow-hidden bg-[#cad0cf]">
+              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/706e738d-c98b-4b9c-8a4e-43e8a0f53424_1600w.png" alt="Mechanical face study showing expressive humanoid systems" class="h-full w-full object-cover object-center grayscale" loading="lazy">
+              <div class="absolute inset-y-0 left-0 w-px bg-[#8ceaf5]"></div>
+              <div class="absolute right-[7%] top-[20%] flex items-center gap-3 bg-[#f3f6f5]/90 px-4 py-3 backdrop-blur">
+                <span class="size-2 rounded-full bg-[#80a8ff]"></span>
+                <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.14em]">
+                  Procedural generation
+                </span>
+              </div>
+              <div class="absolute bottom-[15%] left-[7%] flex items-center gap-3 bg-[#061014]/85 px-4 py-3 text-white backdrop-blur">
+                <span class="size-2 rounded-full bg-[#f0a486]"></span>
+                <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.14em]">
+                  Haptic feedback
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Exploded body -->
+      <section id="systems" class="min-h-[100svh] overflow-hidden bg-[#f3f6f5] px-6 py-24 text-[#061014] sm:px-10 lg:px-14 lg:py-28">
+        <div class="mx-auto max-w-[92rem] border-t border-[#061014]/15 pt-7">
+          <p class="font-['Space_Mono'] text-xs uppercase tracking-[0.2em] text-[#061014]/55">
+            04 / Inside the game engine
+          </p>
+          <h2 class="mt-5 text-5xl font-semibold uppercase leading-[0.88] tracking-tight sm:text-7xl lg:text-8xl" data-warp-title="">
+            Anatomy of
+            <br>
+            a masterpiece.
+          </h2>
+
+          <div class="relative mt-12 min-h-[38rem] overflow-hidden border border-[#061014]/10 bg-white">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b75d6d95-bf54-4a0a-bb7c-4f0e00fc525e_3840w.jpg" alt="Exploded humanoid body with ceramic shell and internal systems" class="absolute inset-0 h-full w-full object-contain" loading="lazy">
+
+            <div class="absolute left-[4%] top-[18%] max-w-48 border-l-2 border-[#8ceaf5] bg-white/90 p-4">
+              <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.16em]">
+                01 / Game Loop
+              </span>
+              <p class="mt-2 text-xs leading-5 text-slate-500">
+                Engaging mechanics that drive the core experience.
+              </p>
+            </div>
+            <div class="absolute right-[4%] top-[26%] max-w-48 border-l-2 border-[#80a8ff] bg-white/90 p-4">
+              <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.16em]">
+                02 / Art Direction
+              </span>
+              <p class="mt-2 text-xs leading-5 text-slate-500">
+                Unique visual aesthetics and careful animation.
+              </p>
+            </div>
+            <div class="absolute bottom-[16%] left-[5%] max-w-48 border-l-2 border-[#f0a486] bg-white/90 p-4">
+              <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.16em]">
+                03 / Soundscape
+              </span>
+              <p class="mt-2 text-xs leading-5 text-slate-500">
+                Immersive audio and dynamic soundtracks.
+              </p>
+            </div>
+            <div class="absolute bottom-[10%] right-[5%] max-w-48 border-l-2 border-[#8ceaf5] bg-white/90 p-4">
+              <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.16em]">
+                04 / Narrative
+              </span>
+              <p class="mt-2 text-xs leading-5 text-slate-500">
+                Compelling storylines and deep lore.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Specifications -->
+      <section class="min-h-[100svh] bg-[#061014] px-6 py-24 sm:px-10 lg:px-14 lg:py-28">
+        <div class="mx-auto max-w-[92rem]">
+          <div class="border-t border-[#8ceaf5]/20 pt-7">
+            <p class="font-['Space_Mono'] text-xs uppercase tracking-[0.2em] text-[#8ceaf5]/60">
+              05 / Technical features
+            </p>
+            <h2 class="mt-5 text-5xl font-semibold uppercase leading-[0.88] tracking-tight sm:text-7xl lg:text-8xl" data-warp-title="">
+              Specifications.
+            </h2>
+          </div>
+
+          <div class="mt-14 grid overflow-hidden border border-[#8ceaf5]/20 lg:grid-cols-12">
+            <div class="relative min-h-[38rem] bg-[#09171b] lg:col-span-5">
+              <div class="absolute inset-6 border border-white/10"></div>
+              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/42013611-20ae-4815-a74a-5a2b22a3a532_1600w.jpg" alt="Full-body Persona humanoid technical render" class="relative h-full min-h-[38rem] w-full object-contain" loading="lazy">
+              <span class="absolute bottom-7 left-7 font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-[#8ceaf5]/70">
+                V-1.0 / Cross-platform
+              </span>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:col-span-7">
+              <article class="border-b border-r border-[#8ceaf5]/15 p-7 sm:p-9">
+                <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-[#8ceaf5]/60">
+                  01 / Resolution
+                </span>
+                <strong class="mt-12 block text-4xl font-light tracking-tight" data-count="168">
+                  4K UHD
+                </strong>
+              </article>
+              <article class="border-b border-[#8ceaf5]/15 p-7 sm:p-9">
+                <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-[#8ceaf5]/60">
+                  02 / Framerate
+                </span>
+                <strong class="mt-12 block text-4xl font-light tracking-tight" data-count="62">
+                  120 fps
+                </strong>
+              </article>
+              <article class="border-b border-r border-[#8ceaf5]/15 p-7 sm:p-9">
+                <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-[#8ceaf5]/60">
+                  03 / Playtime
+                </span>
+                <strong class="mt-12 block text-4xl font-light tracking-tight" data-count="18">
+                  15+ hours
+                </strong>
+              </article>
+              <article class="border-b border-[#8ceaf5]/15 p-7 sm:p-9">
+                <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-[#8ceaf5]/60">
+                  04 / Input
+                </span>
+                <strong class="mt-12 block text-4xl font-light tracking-tight" data-count="6">
+                  Gamepad
+                </strong>
+              </article>
+              <article class="border-r border-[#8ceaf5]/15 p-7 sm:p-9">
+                <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-[#8ceaf5]/60">
+                  05 / Multiplayer
+                </span>
+                <strong class="mt-12 block text-4xl font-light tracking-tight">
+                  Local Co-op
+                </strong>
+              </article>
+              <article class="p-7 sm:p-9">
+                <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-[#8ceaf5]/60">
+                  06 / Platforms
+                </span>
+                <strong class="mt-12 block text-4xl font-light tracking-tight">
+                  PC / Console
+                </strong>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Home companion -->
+      <section class="relative isolate min-h-[100svh] overflow-hidden bg-[#d8c9b9] px-6 py-24 text-[#061014] sm:px-10 lg:px-14 lg:py-28">
+        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ede1771d-fef5-40ce-9c0c-602b07c57d6b_3840w.png" alt="Persona assisting a family in a warm modern home" class="absolute inset-0 h-full w-full object-cover opacity-55" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#f3f6f5]/95 via-[#f3f6f5]/65 to-transparent"></div>
+
+        <div class="relative z-10 mx-auto grid min-h-[72svh] max-w-[92rem] items-center lg:grid-cols-12">
+          <div class="max-w-xl lg:col-span-6">
+            <p class="font-['Space_Mono'] text-xs uppercase tracking-[0.2em] text-[#061014]/55">
+              06 / At home gaming
+            </p>
+            <h2 class="mt-6 text-5xl font-semibold uppercase leading-[0.88] tracking-tight sm:text-7xl lg:text-8xl" data-warp-title="">
+              Couch co-op,
+              <br>
+              by design.
+            </h2>
+            <p class="mt-8 max-w-md text-base leading-7 text-slate-700">
+              Indie games support the rhythm of your downtime—ready for quick
+              sessions or marathon playthroughs on the big screen.
+            </p>
+          </div>
+
+          <ol class="mt-12 border-l border-[#061014]/20 lg:col-span-4 lg:col-start-9 lg:mt-0">
+            <li class="border-b border-[#061014]/15 py-6 pl-6">
+              <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-[#061014]/50">
+                07:00
+              </span>
+              <h3 class="mt-2 text-lg font-medium">Solo campaign</h3>
+            </li>
+            <li class="border-b border-[#061014]/15 py-6 pl-6">
+              <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-[#061014]/50">
+                10:30
+              </span>
+              <h3 class="mt-2 text-lg font-medium">Online matchmaking</h3>
+            </li>
+            <li class="border-b border-[#061014]/15 py-6 pl-6">
+              <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-[#061014]/50">
+                15:45
+              </span>
+              <h3 class="mt-2 text-lg font-medium">Split-screen co-op</h3>
+            </li>
+            <li class="py-6 pl-6">
+              <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-[#061014]/50">
+                22:00
+              </span>
+              <h3 class="mt-2 text-lg font-medium">Speedrun attempts</h3>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Horizontal product gallery -->
+      <section id="gallery" class="relative bg-[#03090c] lg:h-[500svh]" aria-labelledby="gallery-title">
+        <div class="overflow-hidden px-6 py-24 sm:px-10 lg:sticky lg:top-0 lg:flex lg:h-[100svh] lg:flex-col lg:justify-center lg:px-14 lg:py-20">
+          <div class="mx-auto w-full max-w-[92rem]">
+            <div class="flex items-end justify-between gap-6">
+              <div>
+                <p class="font-['Space_Mono'] text-xs uppercase tracking-[0.2em] text-[#8ceaf5]/60">
+                  07 / Game showcase
+                </p>
+                <h2 id="gallery-title" class="mt-4 text-5xl font-semibold uppercase leading-[0.88] tracking-tight sm:text-7xl" data-warp-title="">
+                  The Indie field.
+                </h2>
+              </div>
+              <p class="hidden font-['Space_Mono'] text-xs uppercase tracking-[0.18em] text-slate-500 sm:block">
+                Scroll to explore / 08 titles
+              </p>
+            </div>
+          </div>
+
+          <div id="gallery-viewport" class="mt-12 overflow-x-auto lg:overflow-visible">
+            <div id="gallery-track" class="flex w-max gap-5 will-change-transform sm:gap-7">
+              <article class="gallery-card group relative h-[28rem] w-[82vw] max-w-3xl shrink-0 overflow-hidden border border-white/10 bg-[#09171b] sm:h-[32rem] sm:w-[64vw] lg:w-[46vw]">
+                <img src="https://cdn.midjourney.com/797d7204-ad31-4dad-840f-6ccf7899fe64/0_0.png?w=800&q=80" alt="Persona configured for culinary service" class="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#061014] via-transparent to-transparent"></div>
+                <div class="absolute bottom-7 left-7">
+                  <p class="font-['Space_Mono'] text-xs uppercase tracking-[0.18em] text-[#8ceaf5]">
+                    01 / Action
+                  </p>
+                  <h3 class="mt-3 text-3xl font-light tracking-tight sm:text-4xl">
+                    Fast-paced combat
+                  </h3>
+                </div>
+              </article>
+
+              <article class="gallery-card group relative h-[28rem] w-[82vw] max-w-3xl shrink-0 overflow-hidden border border-white/10 bg-[#09171b] sm:h-[32rem] sm:w-[64vw] lg:w-[46vw]">
+                <img src="https://cdn.midjourney.com/1388d04a-2235-450d-8b8f-6b81cb10442a/0_2.png?w=800&q=80" alt="Persona configured for education" class="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#061014] via-transparent to-transparent"></div>
+                <div class="absolute bottom-7 left-7">
+                  <p class="font-['Space_Mono'] text-xs uppercase tracking-[0.18em] text-[#8ceaf5]">
+                    02 / Adventure
+                  </p>
+                  <h3 class="mt-3 text-3xl font-light tracking-tight sm:text-4xl">
+                    Explore the unknown
+                  </h3>
+                </div>
+              </article>
+
+              <article class="gallery-card group relative h-[28rem] w-[82vw] max-w-3xl shrink-0 overflow-hidden border border-white/10 bg-[#09171b] sm:h-[32rem] sm:w-[64vw] lg:w-[46vw]">
+                <img src="https://cdn.midjourney.com/e1e263bd-c625-40ce-87a0-acf17b28c43f/0_3.png?w=800&q=80" alt="Persona configured for emergency response" class="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#061014] via-transparent to-transparent"></div>
+                <div class="absolute bottom-7 left-7">
+                  <p class="font-['Space_Mono'] text-xs uppercase tracking-[0.18em] text-[#8ceaf5]">
+                    03 / RPG
+                  </p>
+                  <h3 class="mt-3 text-3xl font-light tracking-tight sm:text-4xl">
+                    Build your character
+                  </h3>
+                </div>
+              </article>
+
+              <article class="gallery-card group relative h-[28rem] w-[82vw] max-w-3xl shrink-0 overflow-hidden border border-white/10 bg-[#09171b] sm:h-[32rem] sm:w-[64vw] lg:w-[46vw]">
+                <img src="https://cdn.midjourney.com/0877ab0f-7522-4336-a87e-f4fbf2efe556/0_1.png?w=800&q=80" alt="Persona configured for engineering" class="h-full w-full object-cover grayscale transition duration-700 group-hover:scale-[1.03]" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#061014] via-transparent to-transparent"></div>
+                <div class="absolute bottom-7 left-7">
+                  <p class="font-['Space_Mono'] text-xs uppercase tracking-[0.18em] text-[#8ceaf5]">
+                    04 / Strategy
+                  </p>
+                  <h3 class="mt-3 text-3xl font-light tracking-tight sm:text-4xl">
+                    Master the tactics
+                  </h3>
+                </div>
+              </article>
+
+              <article class="gallery-card group relative h-[28rem] w-[82vw] max-w-3xl shrink-0 overflow-hidden border border-white/10 bg-[#09171b] sm:h-[32rem] sm:w-[64vw] lg:w-[46vw]">
+                <img src="https://cdn.midjourney.com/577a062c-6750-420f-9c33-bcaba6c44339/0_3.png?w=800&q=80" alt="Persona configured for security training" class="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#061014] via-transparent to-transparent"></div>
+                <div class="absolute bottom-7 left-7">
+                  <p class="font-['Space_Mono'] text-xs uppercase tracking-[0.18em] text-[#8ceaf5]">
+                    05 / Puzzle
+                  </p>
+                  <h3 class="mt-3 text-3xl font-light tracking-tight sm:text-4xl">
+                    Challenge your mind
+                  </h3>
+                </div>
+              </article>
+
+              <article class="gallery-card group relative h-[28rem] w-[82vw] max-w-3xl shrink-0 overflow-hidden border border-white/10 bg-[#09171b] sm:h-[32rem] sm:w-[64vw] lg:w-[46vw]">
+                <img src="https://cdn.midjourney.com/f2f243ba-dcf2-40f7-bed6-02ef6ea886ab/0_3.png?w=800&q=80" alt="Persona configured for hospitality" class="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#061014] via-transparent to-transparent"></div>
+                <div class="absolute bottom-7 left-7">
+                  <p class="font-['Space_Mono'] text-xs uppercase tracking-[0.18em] text-[#8ceaf5]">
+                    06 / Platformer
+                  </p>
+                  <h3 class="mt-3 text-3xl font-light tracking-tight sm:text-4xl">
+                    Precision jumping
+                  </h3>
+                </div>
+              </article>
+
+              <article class="gallery-card group relative h-[28rem] w-[82vw] max-w-3xl shrink-0 overflow-hidden border border-white/10 bg-[#09171b] sm:h-[32rem] sm:w-[64vw] lg:w-[46vw]">
+                <img src="https://cdn.midjourney.com/846dd896-5f49-4e1d-bea9-b6a7b77b3e8c/0_3.png?w=800&q=80" alt="Persona configured for police support" class="h-full w-full object-cover grayscale transition duration-700 group-hover:scale-[1.03]" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#061014] via-transparent to-transparent"></div>
+                <div class="absolute bottom-7 left-7">
+                  <p class="font-['Space_Mono'] text-xs uppercase tracking-[0.18em] text-[#8ceaf5]">
+                    07 / Rogue-like
+                  </p>
+                  <h3 class="mt-3 text-3xl font-light tracking-tight sm:text-4xl">
+                    Die and retry
+                  </h3>
+                </div>
+              </article>
+
+              <article class="gallery-card group relative h-[28rem] w-[82vw] max-w-3xl shrink-0 overflow-hidden border border-white/10 bg-[#09171b] sm:h-[32rem] sm:w-[64vw] lg:w-[46vw]">
+                <img src="https://cdn.midjourney.com/2d0b0bfb-af52-4c16-8238-b687c05e47f0/0_3.png?w=800&q=80" alt="Persona configured for domestic care" class="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#061014] via-transparent to-transparent"></div>
+                <div class="absolute bottom-7 left-7">
+                  <p class="font-['Space_Mono'] text-xs uppercase tracking-[0.18em] text-[#8ceaf5]">
+                    08 / Simulation
+                  </p>
+                  <h3 class="mt-3 text-3xl font-light tracking-tight sm:text-4xl">
+                    Build your world
+                  </h3>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="mx-auto mt-8 h-px w-full max-w-[92rem] bg-white/15">
+            <div id="gallery-progress" class="h-px origin-left scale-x-0 bg-gradient-to-r from-[#8ceaf5] to-[#80a8ff] will-change-transform"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technology timeline -->
+      <section class="min-h-[100svh] bg-[#f3f6f5] px-6 py-24 text-[#061014] sm:px-10 lg:px-14 lg:py-28">
+        <div class="mx-auto max-w-[92rem]">
+          <p class="font-['Space_Mono'] text-xs uppercase tracking-[0.2em] text-[#061014]/55">
+            08 / Development cycle
+          </p>
+          <div class="mt-6 grid gap-8 lg:grid-cols-12">
+            <h2 class="text-5xl font-semibold uppercase leading-[0.88] tracking-tight sm:text-7xl lg:col-span-8 lg:text-8xl" data-warp-title="">
+              A game that
+              <br>
+              evolves.
+            </h2>
+            <p class="max-w-md self-end text-base leading-7 text-slate-600 lg:col-span-4">
+              From early access to final release, indie games grow alongside
+              their community with regular updates and fresh content.
+            </p>
+          </div>
+
+          <div class="relative mt-24 grid gap-0 border-t border-[#061014]/20 sm:grid-cols-2 lg:grid-cols-4" id="dev-cycle-timeline">
+            <div id="dev-timeline-main-line" class="absolute left-0 top-0 h-px w-full origin-left scale-x-0 bg-gradient-to-r from-[#8ceaf5] to-[#80a8ff] will-change-transform"></div>
+
+            <article class="dev-timeline-item relative border-b border-[#061014]/10 py-9 sm:pr-8 lg:border-b-0">
+              <svg class="dev-timeline-line absolute left-[5px] top-1.5 h-10 w-px will-change-[stroke-dashoffset]" viewBox="0 0 1 40" preserveAspectRatio="none">
+                <line x1="0.5" y1="0" x2="0.5" y2="40" stroke="#8ceaf5" stroke-width="2" stroke-dasharray="40" stroke-dashoffset="40" style="stroke-dashoffset: 40;"></line>
+              </svg>
+              <span class="dev-timeline-dot absolute -top-1.5 left-0 size-3 scale-0 opacity-0 rounded-full border-2 border-[#f3f6f5] bg-[#8ceaf5] will-change-transform" style="--dot-color: #8ceaf5;"></span>
+              <div class="dev-timeline-content translate-y-4 opacity-0 will-change-transform">
+                <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-[#061014]/50">
+                  Year 1 / 01
+                </span>
+                <h3 class="mt-8 text-2xl font-normal tracking-tight">
+                  Alpha Build
+                </h3>
+                <p class="mt-4 text-sm leading-6 text-slate-500">
+                  Core mechanics, prototype art, and fundamental gameplay loop.
+                </p>
+              </div>
+            </article>
+
+            <article class="dev-timeline-item relative border-b border-[#061014]/10 py-9 sm:pl-8 lg:border-b-0">
+              <svg class="dev-timeline-line absolute left-[5px] top-1.5 h-10 w-px will-change-[stroke-dashoffset] sm:left-[37px]" viewBox="0 0 1 40" preserveAspectRatio="none">
+                <line x1="0.5" y1="0" x2="0.5" y2="40" stroke="#8ceaf5" stroke-width="2" stroke-dasharray="40" stroke-dashoffset="40" style="stroke-dashoffset: 40;"></line>
+              </svg>
+              <span class="dev-timeline-dot absolute -top-1.5 left-0 size-3 scale-0 opacity-0 rounded-full border-2 border-[#f3f6f5] bg-[#8ceaf5] sm:left-8 will-change-transform" style="--dot-color: #8ceaf5;"></span>
+              <div class="dev-timeline-content translate-y-4 opacity-0 will-change-transform">
+                <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-[#061014]/50">
+                  Year 2 / 02
+                </span>
+                <h3 class="mt-8 text-2xl font-normal tracking-tight">
+                  Early Access
+                </h3>
+                <p class="mt-4 text-sm leading-6 text-slate-500">
+                  Community feedback, expanding features, and initial balancing.
+                </p>
+              </div>
+            </article>
+
+            <article class="dev-timeline-item relative border-b border-[#061014]/10 py-9 sm:pr-8 lg:border-b-0 lg:pl-8">
+              <svg class="dev-timeline-line absolute left-[5px] top-1.5 h-10 w-px will-change-[stroke-dashoffset] lg:left-[37px]" viewBox="0 0 1 40" preserveAspectRatio="none">
+                <line x1="0.5" y1="0" x2="0.5" y2="40" stroke="#80a8ff" stroke-width="2" stroke-dasharray="40" stroke-dashoffset="40" style="stroke-dashoffset: 40;"></line>
+              </svg>
+              <span class="dev-timeline-dot absolute -top-1.5 left-0 size-3 scale-0 opacity-0 rounded-full border-2 border-[#f3f6f5] bg-[#80a8ff] lg:left-8 will-change-transform" style="--dot-color: #80a8ff;"></span>
+              <div class="dev-timeline-content translate-y-4 opacity-0 will-change-transform">
+                <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-[#061014]/50">
+                  Year 3 / 03
+                </span>
+                <h3 class="mt-8 text-2xl font-normal tracking-tight">
+                  Full Release
+                </h3>
+                <p class="mt-4 text-sm leading-6 text-slate-500">
+                  Polished 1.0 version with complete story and optimized
+                  performance.
+                </p>
+              </div>
+            </article>
+
+            <article class="dev-timeline-item relative py-9 sm:pl-8">
+              <svg class="dev-timeline-line absolute left-[5px] top-1.5 h-10 w-px will-change-[stroke-dashoffset] sm:left-[37px]" viewBox="0 0 1 40" preserveAspectRatio="none">
+                <line x1="0.5" y1="0" x2="0.5" y2="40" stroke="#80a8ff" stroke-width="2" stroke-dasharray="40" stroke-dashoffset="40" style="stroke-dashoffset: 40;"></line>
+              </svg>
+              <span class="dev-timeline-dot absolute -top-1.5 left-0 size-3 scale-0 opacity-0 rounded-full border-2 border-[#f3f6f5] bg-[#80a8ff] sm:left-8 will-change-transform" style="--dot-color: #80a8ff;"></span>
+              <div class="dev-timeline-content translate-y-4 opacity-0 will-change-transform">
+                <span class="font-['Space_Mono'] text-xs uppercase tracking-[0.16em] text-[#061014]/50">
+                  Year 4 / 04
+                </span>
+                <h3 class="mt-8 text-2xl font-normal tracking-tight">
+                  Post-Launch
+                </h3>
+                <p class="mt-4 text-sm leading-6 text-slate-500">
+                  Free content updates, DLCs, and long-term community support.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="support" class="min-h-[100svh] bg-[#061014] px-6 py-24 sm:px-10 lg:px-14 lg:py-28">
+        <div class="mx-auto grid max-w-[92rem] gap-16 lg:grid-cols-12">
+          <div class="relative min-h-[34rem] lg:col-span-5">
+            <p class="font-['Space_Mono'] text-xs uppercase tracking-[0.2em] text-[#8ceaf5]/60">
+              09 / Questions
+            </p>
+            <h2 class="relative z-10 mt-6 text-5xl font-semibold uppercase leading-[0.88] tracking-tight sm:text-7xl" data-warp-title="">
+              The player
+              <br>
+              details.
+            </h2>
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b75d6d95-bf54-4a0a-bb7c-4f0e00fc525e_1600w.jpg" alt="Low-contrast portrait of the Persona humanoid" class="absolute bottom-0 left-0 h-72 w-full object-cover object-top opacity-35 grayscale" loading="lazy">
+          </div>
+
+          <div class="divide-y divide-white/10 border-t border-white/10 lg:col-span-7">
+            <details class="group" open="">
+              <summary class="flex min-h-20 cursor-pointer list-none items-center justify-between gap-5 py-5 text-base text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8ceaf5]">
+                <span class="flex gap-5">
+                  <span class="font-['Space_Mono'] text-xs text-[#8ceaf5]/60">
+                    01
+                  </span>
+                  Where can I buy these games?
+                </span>
+                <iconify-icon icon="solar:add-circle-linear" stroke-width="1.5" class="shrink-0 text-xl transition group-open:rotate-45"></iconify-icon>
+              </summary>
+              <p class="pb-7 pl-9 text-sm leading-7 text-slate-400">
+                You can purchase our featured titles on major digital
+                storefronts including Steam, Epic Games Store, and console
+                marketplaces.
+              </p>
+            </details>
+
+            <details class="group">
+              <summary class="flex min-h-20 cursor-pointer list-none items-center justify-between gap-5 py-5 text-base text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8ceaf5]">
+                <span class="flex gap-5">
+                  <span class="font-['Space_Mono'] text-xs text-[#8ceaf5]/60">
+                    02
+                  </span>
+                  Are there physical editions available?
+                </span>
+                <iconify-icon icon="solar:add-circle-linear" stroke-width="1.5" class="shrink-0 text-xl transition group-open:rotate-45"></iconify-icon>
+              </summary>
+              <p class="pb-7 pl-9 text-sm leading-7 text-slate-400">
+                Yes. We partner with premium distributors to create limited-run
+                physical editions complete with artbooks, soundtracks, and
+                collectibles.
+              </p>
+            </details>
+
+            <details class="group">
+              <summary class="flex min-h-20 cursor-pointer list-none items-center justify-between gap-5 py-5 text-base text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8ceaf5]">
+                <span class="flex gap-5">
+                  <span class="font-['Space_Mono'] text-xs text-[#8ceaf5]/60">
+                    03
+                  </span>
+                  Do these games support modding?
+                </span>
+                <iconify-icon icon="solar:add-circle-linear" stroke-width="1.5" class="shrink-0 text-xl transition group-open:rotate-45"></iconify-icon>
+              </summary>
+              <p class="pb-7 pl-9 text-sm leading-7 text-slate-400">
+                Many of our titles feature built-in mod support and Steam
+                Workshop integration, allowing the community to create and share
+                new content.
+              </p>
+            </details>
+
+            <details class="group">
+              <summary class="flex min-h-20 cursor-pointer list-none items-center justify-between gap-5 py-5 text-base text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8ceaf5]">
+                <span class="flex gap-5">
+                  <span class="font-['Space_Mono'] text-xs text-[#8ceaf5]/60">
+                    04
+                  </span>
+                  What are the system requirements?
+                </span>
+                <iconify-icon icon="solar:add-circle-linear" stroke-width="1.5" class="shrink-0 text-xl transition group-open:rotate-45"></iconify-icon>
+              </summary>
+              <p class="pb-7 pl-9 text-sm leading-7 text-slate-400">
+                Most indie games are highly optimized to run on a wide range of
+                hardware. Minimum and recommended specs are listed on each
+                game's store page.
+              </p>
+            </details>
+
+            <details class="group">
+              <summary class="flex min-h-20 cursor-pointer list-none items-center justify-between gap-5 py-5 text-base text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8ceaf5]">
+                <span class="flex gap-5">
+                  <span class="font-['Space_Mono'] text-xs text-[#8ceaf5]/60">
+                    05
+                  </span>
+                  How often do games get updated?
+                </span>
+                <iconify-icon icon="solar:add-circle-linear" stroke-width="1.5" class="shrink-0 text-xl transition group-open:rotate-45"></iconify-icon>
+              </summary>
+              <p class="pb-7 pl-9 text-sm leading-7 text-slate-400">
+                Developers release regular patches for bug fixes and balance
+                changes, with major content updates occurring on a seasonal
+                roadmap.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final CTA -->
+      <section id="reserve" class="relative isolate min-h-[100svh] overflow-hidden bg-[#061014] px-6 py-24 sm:px-10 lg:px-14">
+        <div class="absolute inset-y-0 right-0 w-full lg:w-[58%]">
+          <img src="https://cdn.midjourney.com/f87a354d-5a3e-455c-88ee-7ff0c9eeea15/0_2.png?w=800&q=80" alt="Extreme close-up of Persona torso mechanics" class="h-full w-full object-cover object-center opacity-60" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-r from-[#061014] via-[#061014]/35 to-transparent"></div>
+        </div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(140,234,245,.1),transparent_45%)]"></div>
+
+        <div class="relative z-10 mx-auto grid min-h-[75svh] max-w-[92rem] items-center lg:grid-cols-12">
+          <div class="max-w-3xl lg:col-span-7">
+            <div class="grid size-12 place-items-center rounded-full border border-[#8ceaf5]/30 text-[#8ceaf5]">
+              <iconify-icon icon="solar:stars-minimalistic-linear" stroke-width="1.5" class="text-xl"></iconify-icon>
+            </div>
+            <p class="mt-7 font-['Space_Mono'] text-xs uppercase tracking-[0.22em] text-[#8ceaf5]/60">
+              10 / Start playing
+            </p>
+            <h2 class="mt-7 text-6xl font-semibold uppercase leading-[0.84] tracking-tight sm:text-8xl lg:text-9xl" data-warp-title="">
+              Ready for the
+              <br>
+              next level.
+            </h2>
+            <p class="mt-8 max-w-xl text-base leading-7 text-slate-400">
+              Browse our library, add your favorites to your wishlist, and dive
+              into unforgettable independent gaming experiences.
+            </p>
+            <a href="mailto:hello@persona-array.example" data-magnetic="" class="mt-10 inline-flex min-h-12 items-center gap-5 rounded-full bg-[#8ceaf5] px-7 text-xs font-medium uppercase tracking-[0.16em] text-[#061014] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-white active:scale-[0.98]">
+              Wishlist now
+              <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="text-base"></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-white/10 bg-[#03090c] px-6 py-10 sm:px-10 lg:px-14">
+      <div class="mx-auto grid max-w-[92rem] gap-8 lg:grid-cols-3 lg:items-center">
+        <a href="#top" class="flex items-center gap-3 text-xs font-medium tracking-[0.24em]">
+          <span class="grid size-7 place-items-center border border-[#8ceaf5]/30 text-[#8ceaf5]">
+            <iconify-icon icon="solar:soundwave-linear" stroke-width="1.5" class="text-lg"></iconify-icon>
+          </span>
+          INDIE SHOWCASE
+        </a>
+
+        <nav class="flex flex-wrap gap-x-5 gap-y-3 font-['Space_Mono'] text-xs uppercase tracking-[0.12em] text-slate-500 lg:justify-center" aria-label="Footer navigation">
+          <a href="#models" class="transition hover:text-white">Games</a>
+          <a href="#systems" class="transition hover:text-white">Studios</a>
+          <a href="#services" class="transition hover:text-white">Genres</a>
+          <a href="#reserve" class="transition hover:text-white">Wishlist</a>
+          <a href="#support" class="transition hover:text-white">Support</a>
+          <a href="#" class="transition hover:text-white">Privacy</a>
+        </nav>
+
+        <div class="font-['Space_Mono'] text-xs uppercase tracking-[0.14em] text-slate-600 lg:text-right">
+          <span class="inline-flex items-center gap-2">
+            <span class="size-1.5 rounded-full bg-[#8ceaf5]"></span>
+            Worldwide availability
+          </span>
+          <p class="mt-2">Indie Showcase © 2026</p>
+        </div>
+      </div>
+    </footer>
+  
+
+  <script src="scripts.js"></script>
+</body>
+</html>

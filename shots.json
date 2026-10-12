@@ -1,0 +1,12 @@
+[
+  ["top", 0, "00-hero"], ["top", 0.3, "00-hero-30"], ["top", 0.55, "00-hero-55"], ["top", 0.75, "00-hero-75"], ["top", 1, "00-hero-100"],
+  ["models", 0.1, "01-models"],
+  ["services", 0, "02-services"],
+  ["#services + section", 0, "03-mechanics"],
+  ["systems", 0, "04-systems"],
+  ["#systems + section", 0, "05-specs"],
+  ["#gallery", 0, "07-gallery-0"], ["#gallery", 0.5, "07-gallery-50"],
+  ["#gallery + section", 0.3, "08-timeline"],
+  ["support", 0, "09-faq"],
+  ["reserve", 0, "10-cta"]
+]

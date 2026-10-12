@@ -1,0 +1,466 @@
+/* =========================================================
+   Indie Showcase — styles that Tailwind utilities do not cover.
+   Ported from the reference page (indie-showcase-56.aura.build):
+   warp titles, the Aether stage (hero), the second title and the
+   timeline dot pulse. Values are kept exactly as in the source.
+   ========================================================= */
+
+/* ---------- Warp Title reveal ---------- */
+[data-warp-title] {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+[data-warp-title] > .warp-title-content {
+  display: block;
+  transform-origin: 50% 100%;
+  will-change: transform, filter, opacity, clip-path;
+  backface-visibility: hidden;
+}
+
+[data-warp-title].warp-title-pending > .warp-title-content {
+  opacity: 0;
+  clip-path: inset(100% -8% 0 -8%);
+  filter: blur(16px);
+  transform: translate3d(0, 34%, 0) scale3d(1.075, .68, 1) skewY(3deg);
+}
+
+[data-warp-title].warp-title-reveal > .warp-title-content {
+  animation: warp-title-reveal 1.35s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+@keyframes warp-title-reveal {
+  0% {
+    opacity: 0;
+    clip-path: inset(100% -8% 0 -8%);
+    filter: blur(16px);
+    transform: translate3d(0, 34%, 0) scale3d(1.075, .68, 1) skewY(3deg);
+  }
+  38% {
+    opacity: 1;
+    filter: blur(7px);
+    transform: translate3d(0, 8%, 0) scale3d(.985, 1.08, 1) skewY(-1.2deg);
+  }
+  68% {
+    clip-path: inset(-8% -8% -8% -8%);
+    filter: blur(1.5px);
+    transform: translate3d(0, -1.5%, 0) scale3d(1.012, .988, 1) skewY(.25deg);
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(-8% -8% -8% -8%);
+    filter: blur(0);
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1) skewY(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-warp-title], [data-warp-title] > .warp-title-content {
+    animation: none !important;
+    clip-path: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ---------- Aether stage (hero): 420svh track, sticky 100svh scene ----------
+   Every layer reads --mx/--my (pointer), --scroll (0..1 through the track)
+   and --rock-* (idle drift); scripts.js writes them on #top each frame. */
+:root {
+  --aether-ease:cubic-bezier(.2,.7,.2,1);
+}
+
+#top {
+  --mx:0;
+  --my:0;
+  --scroll:0;
+  --rock-x:0px;
+  --rock-y:0px;
+  --rock-r:0deg;
+  height:420svh;
+  background:#7ebbd7;
+}
+
+.aether-hero {
+  position:sticky;
+  top:0;
+  width:100%;
+  height:100svh;
+  min-height:560px;
+  overflow:hidden;
+  isolation:isolate;
+  background:#7ebbd7;
+  perspective:calc(1400px - var(--scroll) * 500px);
+  perspective-origin:50% 46%;
+}
+
+.aether-scene {
+  position:absolute;
+  inset:-4.5%;
+  transform-style:preserve-3d;
+  pointer-events:none;
+}
+
+.aether-layer {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  user-select:none;
+  -webkit-user-drag:none;
+  backface-visibility:hidden;
+  transform-origin:50% 52%;
+  will-change:transform,opacity,filter;
+}
+
+.aether-background {
+  z-index:1;
+  opacity:clamp(0,calc((.94 - var(--scroll)) * 2.8),1);
+  transform:translate3d(calc(var(--mx) * -5px),calc(var(--my) * -3px + var(--scroll) * 4px),-90px) scale(calc(1.07 + var(--scroll) * .48));
+  filter:saturate(.96) contrast(1.01) blur(calc(var(--scroll) * 3px));
+}
+
+.aether-midground {
+  z-index:2;
+  opacity:clamp(0,calc((.88 - var(--scroll)) * 3),1);
+  transform:translate3d(calc(var(--mx) * -11px),calc(var(--my) * -7px + var(--scroll) * 10px),10px) scale(calc(1.055 + var(--scroll) * .7));
+  filter:saturate(1.04) blur(calc(var(--scroll) * 4px)) drop-shadow(0 20px 35px rgba(18,44,58,.09));
+}
+
+.aether-isles {
+  z-index:3;
+  top:4%;
+  left:calc(-2% + 300px);
+  right:auto;
+  bottom:auto;
+  width:75%;
+  max-width:1200px;
+  height:auto;
+  object-fit:contain;
+  opacity:clamp(0,calc((.82 - var(--scroll)) * 3.2),1);
+  transform:translate3d(calc(var(--mx) * -16px + var(--rock-x)),calc(var(--my) * -10px + var(--scroll) * 8px + var(--rock-y)),30px) scale(calc(1.045 + var(--scroll) * .86));
+  filter:saturate(1.02) blur(calc(var(--scroll) * 4.5px)) drop-shadow(0 28px 40px rgba(14,38,48,.18));
+}
+
+.aether-rocks {
+  z-index:4;
+  opacity:clamp(0,calc((.76 - var(--scroll)) * 3.4),1);
+  transform:translate3d(calc(var(--mx) * -22px + var(--rock-x)),calc(var(--my) * -14px - var(--scroll) * 18px + var(--rock-y)),75px) scale(calc(1.035 + var(--scroll) * 1.08)) rotate(var(--rock-r));
+  filter:blur(calc(var(--scroll) * 5px)) drop-shadow(0 24px 34px rgba(31,62,68,.19));
+}
+
+.aether-foreground {
+  z-index:5;
+  opacity:clamp(0,calc((.68 - var(--scroll)) * 3.8),1);
+  transform:translate3d(calc(var(--mx) * -32px),calc(var(--my) * -20px - var(--scroll) * 42px),145px) scale(calc(1.025 + var(--scroll) * 1.5));
+  filter:blur(calc(var(--scroll) * 6px)) drop-shadow(0 24px 42px rgba(16,44,48,.17));
+}
+
+.aether-world-two {
+  z-index:6;
+  opacity:clamp(0,calc((var(--scroll) - .44) * 2.35),1);
+  transform:translate3d(calc(var(--mx) * -3px),calc(var(--my) * -2px + (1 - var(--scroll)) * 12px),55px) scale(calc(1.28 - var(--scroll) * .28));
+  filter:blur(calc((1 - var(--scroll)) * 18px)) saturate(calc(.82 + var(--scroll) * .18)) brightness(calc(.82 + var(--scroll) * .18));
+}
+
+.aether-bloom,.aether-atmosphere,.aether-vignette,.aether-grain {
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.aether-bloom {
+  z-index:7;
+  left:auto;
+  width:36%;
+  background:radial-gradient(circle at 92% 36%,rgba(255,249,188,.30),rgba(255,176,96,.08) 36%,transparent 70%);
+  mix-blend-mode:screen;
+  opacity:clamp(0,calc((.82 - var(--scroll)) * 1.5),.72);
+  transform:translate3d(calc(var(--mx) * 5px),calc(var(--my) * 3px),0);
+}
+
+.aether-atmosphere {
+  z-index:8;
+  background:linear-gradient(to top,rgba(27,74,81,.09),transparent 28%),linear-gradient(105deg,rgba(88,175,195,.08),transparent 36%,rgba(255,192,118,.10));
+  opacity:clamp(.18,calc(.72 - var(--scroll) * .32),.72);
+}
+
+.aether-vignette {
+  z-index:10;
+  background:radial-gradient(ellipse at 52% 46%,transparent 45%,rgba(3,17,24,.10) 76%,rgba(2,12,18,.24) 120%);
+}
+
+.aether-grain {
+  z-index:11;
+  opacity:.06;
+  mix-blend-mode:soft-light;
+  background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 180 180%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%22.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%22.42%22/%3E%3C/svg%3E');
+  animation:aether-grain .32s steps(2) infinite;
+}
+
+.aether-chrome {
+  position:absolute;
+  inset:0;
+  z-index:20;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:clamp(88px,8vw,120px) clamp(22px,3.3vw,54px) clamp(22px,3.3vw,54px);
+  pointer-events:none;
+  opacity:clamp(0,calc((.46 - var(--scroll)) * 3),1);
+}
+
+.aether-eyebrow {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-family:'Space Mono',monospace;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.78);
+  text-shadow:0 1px 16px rgba(18,45,55,.34);
+}
+
+.aether-eyebrow:before {
+  content:'';
+  width:28px;
+  height:1px;
+  background:currentColor;
+  opacity:.72;
+}
+
+.aether-scroll-cue {
+  align-self:flex-end;
+  display:grid;
+  grid-template-columns:auto 1px;
+  gap:14px;
+  align-items:end;
+  font-family:'Space Mono',monospace;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.84);
+  text-shadow:0 1px 12px rgba(13,35,44,.5);
+  transform:translateY(calc(var(--scroll) * -16px));
+  opacity:calc(1 - var(--scroll) * 1.8);
+}
+
+.aether-scroll-line {
+  width:1px;
+  height:60px;
+  overflow:hidden;
+  background:rgba(255,255,255,.30);
+}
+
+.aether-scroll-line:after {
+  content:'';
+  display:block;
+  width:100%;
+  height:38%;
+  background:rgba(255,255,255,.92);
+  animation:aether-descend 1.9s var(--aether-ease) infinite;
+}
+
+.aether-loader {
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:grid;
+  place-items:center;
+  background:#8ec8df;
+  transition:opacity .7s var(--aether-ease),visibility .7s;
+}
+
+.aether-loader.is-hidden {
+  opacity:0;
+  visibility:hidden;
+}
+
+.aether-loader-mark {
+  width:34px;
+  aspect-ratio:1;
+  border:1px solid rgba(255,255,255,.55);
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:aether-spin .8s linear infinite;
+}
+
+@keyframes aether-grain {
+  25% {
+    transform:translate3d(-1.5%,1%,0);
+  }
+  50% {
+    transform:translate3d(1%,-1.5%,0);
+  }
+  75% {
+    transform:translate3d(1.5%,1.2%,0);
+  }
+}
+
+@keyframes aether-descend {
+  from {
+    transform:translateY(-110%);
+  }
+  to {
+    transform:translateY(300%);
+  }
+}
+
+@keyframes aether-spin {
+  to {
+    transform:rotate(1turn);
+  }
+}
+
+@media(max-width:760px) {
+  #top {
+    height:340svh;
+  }
+  .aether-hero {
+    min-height:480px;
+  }
+  .aether-scene {
+    inset:-7%;
+  }
+  .aether-layer {
+    object-position:53% center;
+  }
+  .aether-isles {
+    top:8%;
+    left:calc(-4% + 300px);
+    width:120%;
+  }
+  .aether-world-two {
+    object-position:52% center;
+  }
+  .aether-eyebrow {
+    font-size:9px;
+    letter-spacing:.25em;
+  }
+  .aether-scroll-cue {
+    display:none;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  #top {
+    height:120svh;
+  }
+  .aether-hero {
+    perspective:1400px;
+  }
+  .aether-background {
+    opacity:1;
+    transform:scale(1.07);
+    filter:saturate(.96) contrast(1.01);
+  }
+  .aether-midground {
+    opacity:1;
+    transform:scale(1.055);
+    filter:saturate(1.04);
+  }
+  .aether-isles {
+    opacity:1;
+    transform:scale(1.045);
+    filter:saturate(1.02);
+  }
+  .aether-rocks {
+    opacity:1;
+    transform:scale(1.035);
+    filter:none;
+  }
+  .aether-foreground {
+    opacity:1;
+    transform:scale(1.025);
+    filter:none;
+  }
+  .aether-world-two {
+    opacity:0;
+    transform:scale(1.1);
+    filter:none;
+  }
+  .aether-chrome {
+    opacity:1;
+  }
+  .aether-grain,.aether-scroll-line:after,.aether-loader-mark {
+    animation:none;
+  }
+  .aether-scroll-cue {
+    display:none;
+  }
+}
+
+/* ---------- "Beyond the veil" — only after 58% of the hero ---------- */
+.aether-second-title {
+  position:absolute;
+  right:clamp(22px,5vw,76px);
+  top:50%;
+  z-index:21;
+  max-width:min(44rem,72vw);
+  pointer-events:none;
+  text-align:right;
+  color:#fff;
+  opacity:clamp(0,calc((var(--scroll) - .58) * 4),1);
+  transform:translate3d(0,calc(-50% + (1 - var(--scroll)) * 28px),0);
+  text-shadow:0 3px 30px rgba(3,17,24,.35);
+}
+
+.aether-second-kicker {
+  display:block;
+  margin-bottom:18px;
+  font-family:'Space Mono',monospace;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.72);
+}
+
+.aether-second-title h1 {
+  font-size:clamp(3.5rem,8vw,8.5rem);
+  font-weight:600;
+  line-height:.84;
+  letter-spacing:-.055em;
+  text-transform:uppercase;
+}
+
+@media(max-width:760px) {
+  .aether-second-title {
+    right:22px;
+    max-width:86vw;
+  }
+  .aether-second-title h1 {
+    font-size:clamp(3.25rem,16vw,5.5rem);
+  }
+  .aether-second-kicker {
+    font-size:9px;
+    letter-spacing:.22em;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .aether-second-title {
+    display:none;
+  }
+}
+
+/* ---------- Dev timeline dot pulse ---------- */
+@keyframes dev-dot-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0px var(--dot-color);
+  }
+  50% {
+    box-shadow: 0 0 14px var(--dot-color);
+  }
+}
+
+.dev-dot-pulsing {
+  animation: dev-dot-pulse 2s infinite ease-in-out;
+}
